@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package api.proto.quote;
+
+option go_package = "github.com/PickHD/qoute-echo-grpc/pkg/api/proto/quote;quotepb";
+
+message Quote {
+  string id   = 1;
+  string body = 2;
+}
