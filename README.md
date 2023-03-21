@@ -1,2 +1,3 @@
 # quote-echo-grpc
-quote API GRPC using echo 
+
+using wire as dependency injection
