@@ -1,12 +1,33 @@
 package domain
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type (
-	Qoute struct {
-		ID        string `db:"id" json:"id"`
-		Body      string `db:"body" json:"body"`
+	Quote struct {
+		ID        uuid.UUID `db:"id"`
+		Body      string    `db:"body"`
 		CreatedAt time.Time
-		UpdatedAt time.Time
+		UpdatedAt *time.Time
+	}
+
+	CreateOrUpdateQuoteRequest struct {
+		Body string
+	}
+
+	QuoteResponse struct {
+		ID        uuid.UUID
+		Body      string
+		CreatedAt time.Time
+		UpdatedAt *time.Time
 	}
 )
+
+func NewQuote(body string) Quote {
+	return Quote{
+		Body: body,
+	}
+}
