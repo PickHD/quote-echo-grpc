@@ -6,9 +6,10 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+)
 
-	"github.com/labstack/gommon/log"
-	"go.uber.org/zap"
+const (
+	serverTimeout = 5 * time.Second
 )
 
 type GrpcServer interface {
@@ -46,7 +47,7 @@ func (s *Server) Serve() {
 		signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 		<-sig
 
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), serverTimeout)
 		defer cancel()
 		s.GracefulStop(ctx, done)
 	}()
@@ -57,13 +58,13 @@ func (s *Server) Serve() {
 func (s *Server) GracefulStop(ctx context.Context, done chan bool) {
 	err := s.router.GracefulStop(ctx)
 	if err != nil {
-		s.logger.Error("failed GracefulStop", zap.Error(err))
+		s.logger.Error("failed GracefulStop", err)
 	}
 
 	if err = s.infraCloser.Close(); err != nil {
-		s.logger.Error("failed infraCloser.Close()", zap.Error(err))
+		s.logger.Error("failed infraCloser.Close()", err)
 	}
 
-	log.Info("gracefully shutdowned")
+	s.logger.Info("gracefully shutdowned")
 	done <- true
 }

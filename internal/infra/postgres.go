@@ -10,7 +10,8 @@ import (
 )
 
 func NewPostgreSQLPool(cfg *configs.Config) (*pgxpool.Pool, error) {
-	connStr := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", cfg.DBUsername, cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBName)
+	connStr := fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=%s", cfg.DBUsername,
+		cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBName, cfg.DBSSLMode)
 
 	dbpool, err := pgxpool.New(context.Background(), connStr)
 	if err != nil {

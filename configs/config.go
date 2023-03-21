@@ -13,6 +13,7 @@ type (
 		DBPassword string
 		DBPort     int
 		DBName     string
+		DBSSLMode  string
 	}
 )
 
@@ -27,5 +28,6 @@ func NewConfig() *Config {
 		DBPassword: os.Getenv("DB_PASSWORD"),
 		DBPort:     dbPortInt,
 		DBName:     os.Getenv("DB_NAME"),
+		DBSSLMode:  os.Getenv("DB_SSLMODE"),
 	}
 }
