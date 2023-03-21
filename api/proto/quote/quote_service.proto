@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package api.proto.quote;
+
+option go_package = "github.com/PickHD/Quote-echo-grpc/pkg/api/proto/quote;quotepb";
+
+import "api/proto/quote/quote.proto";
+
+service QuoteService {
+  rpc CreateQuote(CreateQuoteRequest) returns (CreateQuoteResponse);
+  rpc ListQuote(ListQuoteRequest) returns (ListQuoteResponse);
+  rpc DetailQuote(DetailQuoteRequest) returns (DetailQuoteResponse);
+  rpc UpdateQuote(UpdateQuoteRequest) returns (UpdateQuoteResponse);
+  rpc DeleteQuote(DeleteQuoteRequest) returns (DeleteQuoteResponse);
+}
+
+message CreateQuoteRequest {
+  string body = 1;
+}
+
+message CreateQuoteResponse {
+  string id = 1;
+}
+
+message ListQuoteRequest {}
+
+message ListQuoteResponse {
+  repeated Quote quotes = 1;
+}
+
+message DetailQuoteRequest {
+  string id = 1;
+}
+
+message DetailQuoteResponse {
+  Quote quote = 1;
+}
+
+message UpdateQuoteRequest {
+  string id   = 1;
+  string body = 2;
+}
+
+message UpdateQuoteResponse {
+  string id = 1;
+}
+
+message DeleteQuoteRequest {
+  string id = 1;
+}
+
+message DeleteQuoteResponse {
+  string id = 1;
+}
