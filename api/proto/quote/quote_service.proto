@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package api.proto.quote;
 
-option go_package = "github.com/PickHD/qoute-echo-grpc/pkg/api/proto/quote;quotepb";
+option go_package = "github.com/PickHD/Quote-echo-grpc/pkg/api/proto/quote;quotepb";
 
 import "api/proto/quote/quote.proto";
 
 service QuoteService {
   rpc CreateQuote(CreateQuoteRequest) returns (CreateQuoteResponse);
-  rpc ListQuote(ListQouteRequest) returns (ListQuoteResponse);
-  rpc DetailQoute(DetailQuoteRequest) returns (DeleteQuoteResponse);
-  rpc UpdateQoute(UpdateQouteRequest) returns (UpdateQouteResponse);
-  rpc DeleteQouteRequest(DeleteQuoteRequest) returns (DeleteQuoteResponse);
+  rpc ListQuote(ListQuoteRequest) returns (ListQuoteResponse);
+  rpc DetailQuote(DetailQuoteRequest) returns (DetailQuoteResponse);
+  rpc UpdateQuote(UpdateQuoteRequest) returns (UpdateQuoteResponse);
+  rpc DeleteQuote(DeleteQuoteRequest) returns (DeleteQuoteResponse);
 }
 
 message CreateQuoteRequest {
@@ -22,7 +22,7 @@ message CreateQuoteResponse {
   string id = 1;
 }
 
-message ListQouteRequest {}
+message ListQuoteRequest {}
 
 message ListQuoteResponse {
   repeated Quote quotes = 1;
@@ -36,12 +36,12 @@ message DetailQuoteResponse {
   Quote quote = 1;
 }
 
-message UpdateQouteRequest {
+message UpdateQuoteRequest {
   string id   = 1;
   string body = 2;
 }
 
-message UpdateQouteResponse {
+message UpdateQuoteResponse {
   string id = 1;
 }
 

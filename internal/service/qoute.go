@@ -6,17 +6,17 @@ import (
 )
 
 type (
-	QouteService interface{}
+	QuoteService interface{}
 
-	QouteServiceImpl struct {
-		Config configs.Config
-		QouteRepository repository.QouteRepository
+	QuoteServiceImpl struct {
+		Config          *configs.Config
+		QuoteRepository repository.QuoteRepository
 	}
 )
 
-func NewQouteRepositoryImpl(cfg configs.Config, qouteRepo repository.QouteRepository) QouteService {
-	return &QouteServiceImpl{
-		Config: cfg,
-		QouteRepository: qouteRepo,
+func NewQouteServiceImpl(cfg *configs.Config, qouteRepo repository.QuoteRepository) *QuoteServiceImpl {
+	return &QuoteServiceImpl{
+		Config:          cfg,
+		QuoteRepository: qouteRepo,
 	}
 }

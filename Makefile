@@ -42,3 +42,7 @@ lint:
 fmt:
 	gofmt -w -s .
 	find . -name '*.proto' | xargs clang-format -i
+
+# Run wire injector
+wire:
+	wire ./internal/wire

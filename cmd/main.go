@@ -4,16 +4,19 @@ import (
 	"log"
 
 	"github.com/joho/godotenv"
-	"go.uber.org/zap"
+
+	"github.com/PickHD/quote-echo-grpc/internal/wire"
 )
 
 func main() {
-	logger, err := zap.NewProduction()
-	if err != nil {
-		log.Fatalln("Failed to construct new zap logger:", err)
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Failed to load .env with godotenv", err)
 	}
 
-	if err := godotenv.Load(); err != nil {
-		logger.Fatal("Failed to load .env with godotenv", zap.Error(err))
+	server, err := wire.InitializeServer("quote")
+	if err != nil {
+		log.Fatal(err)
 	}
+
+	server.Serve()
 }

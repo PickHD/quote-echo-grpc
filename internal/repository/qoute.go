@@ -2,22 +2,22 @@ package repository
 
 import (
 	"github.com/PickHD/quote-echo-grpc/configs"
+	"github.com/PickHD/quote-echo-grpc/internal/common"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"go.uber.org/zap"
 )
 
 type (
-	QouteRepository interface{}
+	QuoteRepository interface{}
 
-	QouteRepositoryImpl struct {
-		Config configs.Config
+	QuoteRepositoryImpl struct {
+		Config *configs.Config
 		DB     *pgxpool.Pool
-		Logger *zap.Logger
+		Logger common.Logger
 	}
 )
 
-func NewQouteRepositoryImpl(cfg configs.Config, db *pgxpool.Pool, logger *zap.Logger) QouteRepository {
-	return &QouteRepositoryImpl{
+func NewQouteRepositoryImpl(cfg *configs.Config, db *pgxpool.Pool, logger common.Logger) *QuoteRepositoryImpl {
+	return &QuoteRepositoryImpl{
 		Config: cfg,
 		DB:     db,
 		Logger: logger,

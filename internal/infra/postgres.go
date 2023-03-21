@@ -9,7 +9,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-func NewPostgreSQLPool(cfg configs.Config) (*pgxpool.Pool, error) {
+func NewPostgreSQLPool(cfg *configs.Config) (*pgxpool.Pool, error) {
 	connStr := fmt.Sprintf("postgres://%s:%s@%s:%d/%s", cfg.DBUsername, cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBName)
 
 	dbpool, err := pgxpool.New(context.Background(), connStr)

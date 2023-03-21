@@ -13,6 +13,7 @@ import (
 
 type GrpcServer interface {
 	Run()
+	Register()
 	GracefulStop() error
 }
 
@@ -29,10 +30,10 @@ type Server struct {
 	name        string
 	router      Router
 	infraCloser InfraCloser
-	logger      *zap.Logger
+	logger      Logger
 }
 
-func NewServer(name string, router Router, infraCloser InfraCloser, logger *zap.Logger) *Server {
+func NewServer(name string, router Router, infraCloser InfraCloser, logger Logger) *Server {
 	return &Server{name, router, infraCloser, logger}
 }
 
@@ -56,11 +57,11 @@ func (s *Server) Serve() {
 func (s *Server) GracefulStop(ctx context.Context, done chan bool) {
 	err := s.router.GracefulStop(ctx)
 	if err != nil {
-		log.Error(err)
+		s.logger.Error("failed GracefulStop", zap.Error(err))
 	}
 
 	if err = s.infraCloser.Close(); err != nil {
-		log.Error(err)
+		s.logger.Error("failed infraCloser.Close()", zap.Error(err))
 	}
 
 	log.Info("gracefully shutdowned")

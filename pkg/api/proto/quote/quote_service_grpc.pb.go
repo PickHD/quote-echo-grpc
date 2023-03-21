@@ -23,10 +23,10 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type QuoteServiceClient interface {
 	CreateQuote(ctx context.Context, in *CreateQuoteRequest, opts ...grpc.CallOption) (*CreateQuoteResponse, error)
-	ListQuote(ctx context.Context, in *ListQouteRequest, opts ...grpc.CallOption) (*ListQuoteResponse, error)
-	DetailQoute(ctx context.Context, in *DetailQuoteRequest, opts ...grpc.CallOption) (*DeleteQuoteResponse, error)
-	UpdateQoute(ctx context.Context, in *UpdateQouteRequest, opts ...grpc.CallOption) (*UpdateQouteResponse, error)
-	DeleteQouteRequest(ctx context.Context, in *DeleteQuoteRequest, opts ...grpc.CallOption) (*DeleteQuoteResponse, error)
+	ListQuote(ctx context.Context, in *ListQuoteRequest, opts ...grpc.CallOption) (*ListQuoteResponse, error)
+	DetailQuote(ctx context.Context, in *DetailQuoteRequest, opts ...grpc.CallOption) (*DetailQuoteResponse, error)
+	UpdateQuote(ctx context.Context, in *UpdateQuoteRequest, opts ...grpc.CallOption) (*UpdateQuoteResponse, error)
+	DeleteQuote(ctx context.Context, in *DeleteQuoteRequest, opts ...grpc.CallOption) (*DeleteQuoteResponse, error)
 }
 
 type quoteServiceClient struct {
@@ -46,7 +46,7 @@ func (c *quoteServiceClient) CreateQuote(ctx context.Context, in *CreateQuoteReq
 	return out, nil
 }
 
-func (c *quoteServiceClient) ListQuote(ctx context.Context, in *ListQouteRequest, opts ...grpc.CallOption) (*ListQuoteResponse, error) {
+func (c *quoteServiceClient) ListQuote(ctx context.Context, in *ListQuoteRequest, opts ...grpc.CallOption) (*ListQuoteResponse, error) {
 	out := new(ListQuoteResponse)
 	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/ListQuote", in, out, opts...)
 	if err != nil {
@@ -55,27 +55,27 @@ func (c *quoteServiceClient) ListQuote(ctx context.Context, in *ListQouteRequest
 	return out, nil
 }
 
-func (c *quoteServiceClient) DetailQoute(ctx context.Context, in *DetailQuoteRequest, opts ...grpc.CallOption) (*DeleteQuoteResponse, error) {
-	out := new(DeleteQuoteResponse)
-	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/DetailQoute", in, out, opts...)
+func (c *quoteServiceClient) DetailQuote(ctx context.Context, in *DetailQuoteRequest, opts ...grpc.CallOption) (*DetailQuoteResponse, error) {
+	out := new(DetailQuoteResponse)
+	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/DetailQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *quoteServiceClient) UpdateQoute(ctx context.Context, in *UpdateQouteRequest, opts ...grpc.CallOption) (*UpdateQouteResponse, error) {
-	out := new(UpdateQouteResponse)
-	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/UpdateQoute", in, out, opts...)
+func (c *quoteServiceClient) UpdateQuote(ctx context.Context, in *UpdateQuoteRequest, opts ...grpc.CallOption) (*UpdateQuoteResponse, error) {
+	out := new(UpdateQuoteResponse)
+	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/UpdateQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *quoteServiceClient) DeleteQouteRequest(ctx context.Context, in *DeleteQuoteRequest, opts ...grpc.CallOption) (*DeleteQuoteResponse, error) {
+func (c *quoteServiceClient) DeleteQuote(ctx context.Context, in *DeleteQuoteRequest, opts ...grpc.CallOption) (*DeleteQuoteResponse, error) {
 	out := new(DeleteQuoteResponse)
-	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/DeleteQouteRequest", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.proto.quote.QuoteService/DeleteQuote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,10 +87,10 @@ func (c *quoteServiceClient) DeleteQouteRequest(ctx context.Context, in *DeleteQ
 // for forward compatibility
 type QuoteServiceServer interface {
 	CreateQuote(context.Context, *CreateQuoteRequest) (*CreateQuoteResponse, error)
-	ListQuote(context.Context, *ListQouteRequest) (*ListQuoteResponse, error)
-	DetailQoute(context.Context, *DetailQuoteRequest) (*DeleteQuoteResponse, error)
-	UpdateQoute(context.Context, *UpdateQouteRequest) (*UpdateQouteResponse, error)
-	DeleteQouteRequest(context.Context, *DeleteQuoteRequest) (*DeleteQuoteResponse, error)
+	ListQuote(context.Context, *ListQuoteRequest) (*ListQuoteResponse, error)
+	DetailQuote(context.Context, *DetailQuoteRequest) (*DetailQuoteResponse, error)
+	UpdateQuote(context.Context, *UpdateQuoteRequest) (*UpdateQuoteResponse, error)
+	DeleteQuote(context.Context, *DeleteQuoteRequest) (*DeleteQuoteResponse, error)
 	mustEmbedUnimplementedQuoteServiceServer()
 }
 
@@ -101,17 +101,17 @@ type UnimplementedQuoteServiceServer struct {
 func (UnimplementedQuoteServiceServer) CreateQuote(context.Context, *CreateQuoteRequest) (*CreateQuoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateQuote not implemented")
 }
-func (UnimplementedQuoteServiceServer) ListQuote(context.Context, *ListQouteRequest) (*ListQuoteResponse, error) {
+func (UnimplementedQuoteServiceServer) ListQuote(context.Context, *ListQuoteRequest) (*ListQuoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListQuote not implemented")
 }
-func (UnimplementedQuoteServiceServer) DetailQoute(context.Context, *DetailQuoteRequest) (*DeleteQuoteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DetailQoute not implemented")
+func (UnimplementedQuoteServiceServer) DetailQuote(context.Context, *DetailQuoteRequest) (*DetailQuoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DetailQuote not implemented")
 }
-func (UnimplementedQuoteServiceServer) UpdateQoute(context.Context, *UpdateQouteRequest) (*UpdateQouteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateQoute not implemented")
+func (UnimplementedQuoteServiceServer) UpdateQuote(context.Context, *UpdateQuoteRequest) (*UpdateQuoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateQuote not implemented")
 }
-func (UnimplementedQuoteServiceServer) DeleteQouteRequest(context.Context, *DeleteQuoteRequest) (*DeleteQuoteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteQouteRequest not implemented")
+func (UnimplementedQuoteServiceServer) DeleteQuote(context.Context, *DeleteQuoteRequest) (*DeleteQuoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteQuote not implemented")
 }
 func (UnimplementedQuoteServiceServer) mustEmbedUnimplementedQuoteServiceServer() {}
 
@@ -145,7 +145,7 @@ func _QuoteService_CreateQuote_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _QuoteService_ListQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListQouteRequest)
+	in := new(ListQuoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -157,61 +157,61 @@ func _QuoteService_ListQuote_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/api.proto.quote.QuoteService/ListQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QuoteServiceServer).ListQuote(ctx, req.(*ListQouteRequest))
+		return srv.(QuoteServiceServer).ListQuote(ctx, req.(*ListQuoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _QuoteService_DetailQoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _QuoteService_DetailQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DetailQuoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QuoteServiceServer).DetailQoute(ctx, in)
+		return srv.(QuoteServiceServer).DetailQuote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.proto.quote.QuoteService/DetailQoute",
+		FullMethod: "/api.proto.quote.QuoteService/DetailQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QuoteServiceServer).DetailQoute(ctx, req.(*DetailQuoteRequest))
+		return srv.(QuoteServiceServer).DetailQuote(ctx, req.(*DetailQuoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _QuoteService_UpdateQoute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateQouteRequest)
+func _QuoteService_UpdateQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateQuoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QuoteServiceServer).UpdateQoute(ctx, in)
+		return srv.(QuoteServiceServer).UpdateQuote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.proto.quote.QuoteService/UpdateQoute",
+		FullMethod: "/api.proto.quote.QuoteService/UpdateQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QuoteServiceServer).UpdateQoute(ctx, req.(*UpdateQouteRequest))
+		return srv.(QuoteServiceServer).UpdateQuote(ctx, req.(*UpdateQuoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _QuoteService_DeleteQouteRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _QuoteService_DeleteQuote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteQuoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QuoteServiceServer).DeleteQouteRequest(ctx, in)
+		return srv.(QuoteServiceServer).DeleteQuote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.proto.quote.QuoteService/DeleteQouteRequest",
+		FullMethod: "/api.proto.quote.QuoteService/DeleteQuote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QuoteServiceServer).DeleteQouteRequest(ctx, req.(*DeleteQuoteRequest))
+		return srv.(QuoteServiceServer).DeleteQuote(ctx, req.(*DeleteQuoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -232,16 +232,16 @@ var QuoteService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _QuoteService_ListQuote_Handler,
 		},
 		{
-			MethodName: "DetailQoute",
-			Handler:    _QuoteService_DetailQoute_Handler,
+			MethodName: "DetailQuote",
+			Handler:    _QuoteService_DetailQuote_Handler,
 		},
 		{
-			MethodName: "UpdateQoute",
-			Handler:    _QuoteService_UpdateQoute_Handler,
+			MethodName: "UpdateQuote",
+			Handler:    _QuoteService_UpdateQuote_Handler,
 		},
 		{
-			MethodName: "DeleteQouteRequest",
-			Handler:    _QuoteService_DeleteQouteRequest_Handler,
+			MethodName: "DeleteQuote",
+			Handler:    _QuoteService_DeleteQuote_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
